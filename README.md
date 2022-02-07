@@ -8,5 +8,5 @@ Scala.js Facade of the [Axios library](hhttps://github.com/axios/axios)
 ## Install
 
 ```
-libraryDependencies += "com.github.p2m2" %%% "n3js" % "1.13.0",
+libraryDependencies += "com.github.p2m2" %%% "axios" % "0.25.0",
 ```
