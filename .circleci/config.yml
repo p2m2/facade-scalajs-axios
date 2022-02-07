@@ -30,7 +30,7 @@ workflows:
           context:
             - DOCKER_CONTEXT
 
-      - test_coverage:
+      - codecov:
           requires:
             - lib
           context:
@@ -38,7 +38,7 @@ workflows:
 
       - publish_snapshot:
           requires:
-            - test_coverage
+            - codecov
           context:
             - DOCKER_CONTEXT
             - CREDENTIAL_CONTEXT
@@ -109,25 +109,16 @@ jobs:
           name: fullOptJS
           command: cat /dev/null | sbt fullOptJS
 
-  test_coverage:
+  codecov:
     executor: openjdk
 
     steps:
       - checkout
       - setup_remote_docker
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.sbt" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      - node/install:
-          node-version: '17.4'
       - run:
           name: Test and Coverage
           command: |
-            cat /dev/null | sbt clean coverage test coverageReport
             bash <(curl -s https://codecov.io/bash)
-          # bash <(curl -Ls https://coverage.codacy.com/get.sh) report
 
       - store_artifacts:
           path: target/test-reports
