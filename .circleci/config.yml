@@ -132,13 +132,6 @@ jobs:
       - store_artifacts:
           path: target/test-reports
 
-      #- run:
-      #    name: Set Npm token
-      #    command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
-      #- run:
-      #    name: Publish package
-      #    command: npm publish
-
   publish_snapshot:
     executor: openjdk
     steps:

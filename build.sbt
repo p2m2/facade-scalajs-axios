@@ -50,7 +50,6 @@ def getPackageSetting = Seq(
 
 lazy val root = project.in(file(".")).
   enablePlugins(ScalaJSPlugin).
-  enablePlugins(ScalaJSBundlerPlugin).
   // add the `it` configuration
   configs(IntegrationTest).
   // add `it` tasks
@@ -67,12 +66,7 @@ lazy val root = project.in(file(".")).
     Compile / fullOptJS / scalaJSLinkerConfig ~= {
       _.withSourceMap(false)
         .withModuleKind(ModuleKind.CommonJSModule)
-    },
-    webpackBundlingMode := BundlingMode.LibraryAndApplication(),
-    Compile / npmDependencies ++= Seq("n3" -> version_n3),
-    libraryDependencies ++= Seq(
-      "axios" -> version_axios
-    )
+    }
   )
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
