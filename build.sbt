@@ -1,11 +1,11 @@
 import sbt.Keys.{testFrameworks, version}
 
-lazy val version_axios = "0.25.0"
+lazy val version_axios = "0.26.1"
 
 def getPackageSetting = Seq(
   name := "axios",
   version := scala.util.Properties.envOrElse("PROG_VERSION", version_axios ),
-  scalaVersion := "2.13.7",
+  scalaVersion := "2.13.8",
   organization := "com.github.p2m2",
   organizationName := "p2m2",
   organizationHomepage := Some(url("https://www6.inrae.fr/p2m2")),
